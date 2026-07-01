@@ -1,0 +1,152 @@
+.map-india-container {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: relative;
+  overflow: hidden;
+}
+
+/* Aged parchment multiply overlay */
+.map-parchment-texture {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  z-index: 2;
+  mix-blend-mode: multiply;
+  opacity: 0.16;
+  background-image: 
+    radial-gradient(circle at 50% 50%, rgba(214, 168, 95, 0.4) 0%, rgba(26, 13, 8, 0.9) 100%),
+    repeating-linear-gradient(45deg, rgba(214, 168, 95, 0.05), rgba(214, 168, 95, 0.05) 10px, transparent 10px, transparent 20px);
+}
+
+.india-map-svg {
+  width: 100%;
+  height: 100%;
+  max-width: 100%;
+  max-height: 100%;
+  filter: drop-shadow(0 0 20px rgba(214, 168, 95, 0.08));
+}
+
+.india-map-image {
+  pointer-events: none;
+  /* Dark textured sepia theme representing wood-carved map */
+  filter: sepia(0.65) contrast(1.15) brightness(0.6) saturate(0.85);
+  transition: filter 0.5s ease;
+}
+
+.state-marker {
+  cursor: pointer;
+  transform-origin: center;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* 20-30% Enlarged Glowing Golden Circle Dot */
+.state-marker__dot {
+  fill: #D6A85F; /* Reference Gold */
+  stroke: rgba(255, 255, 255, 0.35);
+  stroke-width: 1.5;
+  filter: drop-shadow(0 0 6px rgba(214, 168, 95, 0.85));
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* White glisten center core */
+.state-marker__center-core {
+  fill: #ffffff;
+  pointer-events: none;
+  transform-origin: center;
+  transform-box: fill-box;
+  transition: all 0.4s ease;
+}
+
+/* Serif Labels center aligned directly below the dot */
+.state-marker__label {
+  fill: rgba(252, 249, 245, 0.85); /* Faint ivory cream by default */
+  font-family: 'Cinzel', 'Cormorant Garamond', serif;
+  font-size: 10px;
+  font-weight: 600;
+  text-anchor: middle;
+  stroke: #150b07; /* Clear dark outline for maximum readability */
+  stroke-width: 3.5;
+  paint-order: stroke fill;
+  pointer-events: none;
+  letter-spacing: 0.5px;
+  opacity: 0.85; /* Visible by default as in screenshot */
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Compact typography in dense regions to prevent overlaps */
+.state-marker__label--dense {
+  font-size: 8.2px;
+  letter-spacing: 0.2px;
+}
+
+.state-marker__hit {
+  fill: transparent;
+  pointer-events: all;
+}
+
+/* --- INTERACTIVE HOVER EFFECT --- */
+.state-marker:hover .state-marker__dot {
+  fill: #ffdfa9;
+  stroke: #ffffff;
+  transform: scale(1.15); /* Scale enlargement by 1.15 */
+  filter: drop-shadow(0 0 14px rgba(214, 168, 95, 1));
+  animation: dotHoverPulse 1.5s infinite alternate ease-in-out;
+}
+
+.state-marker:hover .state-marker__center-core {
+  transform: scale(1.18);
+  fill: #ffffff;
+}
+
+.state-marker:hover .state-marker__label {
+  fill: #ffffff;
+  opacity: 1;
+  text-shadow: 0 0 8px rgba(214, 168, 95, 0.85); /* Text brightens and glows gold */
+}
+
+/* Selected state styling (pulsing highlight) */
+.state-marker--selected .state-marker__dot {
+  fill: #ffffff;
+  stroke: #D6A85F;
+  stroke-width: 2;
+  transform: scale(1.15);
+  filter: drop-shadow(0 0 16px rgba(214, 168, 95, 1));
+  animation: dotSelectedPulse 1.8s infinite ease-in-out alternate;
+}
+
+.state-marker--selected .state-marker__label {
+  fill: #ffffff;
+  opacity: 1;
+  font-weight: 700;
+  text-shadow: 0 0 10px rgba(214, 168, 95, 0.9);
+}
+
+/* Glistening gold pulse keyframes */
+@keyframes dotHoverPulse {
+  0% {
+    filter: drop-shadow(0 0 6px rgba(214, 168, 95, 0.8));
+    opacity: 0.9;
+  }
+  50% {
+    filter: drop-shadow(0 0 16px rgba(214, 168, 95, 1)) drop-shadow(0 0 4px #ffffff);
+    opacity: 1;
+  }
+  100% {
+    filter: drop-shadow(0 0 8px rgba(214, 168, 95, 0.9));
+    opacity: 0.95;
+  }
+}
+
+@keyframes dotSelectedPulse {
+  0% {
+    filter: drop-shadow(0 0 8px rgba(214, 168, 95, 0.7));
+  }
+  100% {
+    filter: drop-shadow(0 0 18px rgba(214, 168, 95, 1));
+  }
+}

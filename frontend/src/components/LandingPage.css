@@ -1,0 +1,416 @@
+/* Reetiverse Cinematic Landing Page Styles */
+
+/* Ensure the root HTML/Body does not allow scrollbars when on the landing page */
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow: hidden; /* Prevent scrolls on first page */
+}
+
+/* Fullscreen container for the cinematic hero section */
+.landing-hero-container {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  background-color: #0b0604; /* Deep backup color matching the shadow/void */
+  
+  /* Background Image Setup */
+  background-image: url('https://i.pinimg.com/1200x/21/0e/78/210e78431edbad6b9f959638fcc73a3a.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  /* Cinematic soft background entrance */
+  opacity: 0;
+  animation: bgFadeIn 2.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Immersive vignette & gradient overlay to improve text contrast and frame the scene */
+.landing-overlay {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at 50% 50%,
+    rgba(11, 6, 4, 0.15) 0%,
+    rgba(11, 6, 4, 0.5) 50%,
+    rgba(11, 6, 4, 0.85) 90%,
+    #0b0604 100%
+  );
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Ornate Thin Gold Outer Framing */
+.cinematic-frame {
+  position: absolute;
+  inset: 1.5rem;
+  border: 1px solid rgba(212, 175, 55, 0.05);
+  pointer-events: none;
+  z-index: 2;
+  opacity: 0;
+  animation: frameFadeIn 2s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.frame-corner {
+  position: absolute;
+  width: 30px;
+  height: 30px;
+  border: 1.5px solid rgba(212, 175, 55, 0.25);
+  transition: border-color 0.5s ease;
+}
+
+.frame-corner.top-left {
+  top: -1.5px;
+  left: -1.5px;
+  border-right: none;
+  border-bottom: none;
+}
+
+.frame-corner.top-right {
+  top: -1.5px;
+  right: -1.5px;
+  border-left: none;
+  border-bottom: none;
+}
+
+.frame-corner.bottom-left {
+  bottom: -1.5px;
+  left: -1.5px;
+  border-right: none;
+  border-top: none;
+}
+
+.frame-corner.bottom-right {
+  bottom: -1.5px;
+  right: -1.5px;
+  border-left: none;
+  border-top: none;
+}
+
+/* Center Content block */
+.landing-center-content {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  width: 90%;
+  max-width: 800px;
+  padding: 2rem;
+  user-select: none;
+}
+
+/* 1. Reetiverse Premium Title */
+.landing-title {
+  font-family: 'Cinzel', serif;
+  font-size: clamp(3rem, 9.5vw, 6.2rem);
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: 0.22em;
+  margin: 0;
+  padding: 0;
+  line-height: 1.1;
+  
+  /* Golden gradient shimmers vertically */
+  background: linear-gradient(
+    to bottom,
+    #ffffff 0%,
+    #f3e5cd 45%,
+    #dfba73 80%,
+    #cfa14b 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* Soft, mystical outer gold glow */
+  filter: drop-shadow(0 0 20px rgba(207, 161, 75, 0.25));
+  
+  /* Cinematic Fade Up Entrance */
+  opacity: 0;
+  transform: translateY(40px) scale(0.97);
+  animation: titleFadeUp 1.8s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+/* Ornate Micro Divider Under Title */
+.landing-divider {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 180px;
+  margin: 1.5rem 0;
+  position: relative;
+  opacity: 0;
+  animation: dividerFade 1.6s cubic-bezier(0.16, 1, 0.3, 1) 1s forwards;
+}
+
+.landing-divider::before,
+.landing-divider::after {
+  content: '';
+  flex: 1;
+  height: 1px;
+  background: linear-gradient(
+    90deg,
+    transparent,
+    rgba(212, 175, 55, 0.4) 50%,
+    transparent
+  );
+}
+
+.divider-diamond {
+  color: rgba(212, 175, 55, 0.7);
+  font-size: 0.9rem;
+  margin: 0 0.8rem;
+  text-shadow: 0 0 8px rgba(212, 175, 55, 0.5);
+  animation: pulseGlow 3s ease-in-out infinite alternate;
+}
+
+/* 2. Elegant Two-Line Tagline */
+.landing-tagline {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  margin-bottom: 3.5rem;
+  opacity: 0;
+  transform: translateY(15px);
+  animation: taglineFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) 1.2s forwards;
+}
+
+.tagline-line {
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  font-weight: 500;
+  font-size: clamp(1.2rem, 3.8vw, 1.95rem);
+  color: rgba(252, 249, 245, 0.88);
+  letter-spacing: 0.05em;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.6);
+  line-height: 1.3;
+}
+
+.tagline-line.line-2 {
+  font-weight: 400;
+  color: rgba(212, 175, 55, 0.85); /* Accent secondary state line in warm gold */
+}
+
+/* 3. Mystical Frosted Glass Pill Enter Button Wrapper */
+.landing-button-wrapper {
+  opacity: 0;
+  transform: translateY(15px);
+  animation: buttonFadeIn 1.2s cubic-bezier(0.16, 1, 0.3, 1) 1.8s forwards;
+}
+
+.landing-enter-btn {
+  position: relative;
+  background: rgba(252, 249, 245, 0.03);
+  backdrop-filter: blur(12px);
+  -webkit-backdrop-filter: blur(12px);
+  border: 1px solid rgba(212, 175, 55, 0.35);
+  padding: 0.9rem 4rem;
+  border-radius: 50px;
+  cursor: pointer;
+  outline: none;
+  overflow: hidden;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+  box-shadow: 
+    0 10px 30px rgba(0, 0, 0, 0.4),
+    inset 0 1px 0 rgba(255, 255, 255, 0.1);
+}
+
+.btn-text {
+  font-family: 'Cinzel', serif;
+  font-size: 1.15rem;
+  font-weight: 600;
+  letter-spacing: 0.35em;
+  color: #f7e6cd;
+  text-transform: uppercase;
+  text-align: center;
+  /* Push text to the right slightly to center visually due to letter-spacing */
+  padding-left: 0.35em; 
+  position: relative;
+  z-index: 2;
+  transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Ambient inner glow layer */
+.btn-glow-effect {
+  position: absolute;
+  inset: 0;
+  background: radial-gradient(
+    circle at center,
+    rgba(212, 175, 55, 0.15) 0%,
+    transparent 70%
+  );
+  opacity: 0.5;
+  z-index: 1;
+  transition: opacity 0.6s ease;
+}
+
+/* Button Hover State */
+.landing-enter-btn:hover {
+  transform: scale(1.04);
+  background: rgba(212, 175, 55, 0.08);
+  border-color: rgba(212, 175, 55, 0.8);
+  box-shadow: 
+    0 0 35px rgba(212, 175, 55, 0.35),
+    inset 0 0 12px rgba(212, 175, 55, 0.15),
+    0 15px 40px rgba(0, 0, 0, 0.5);
+}
+
+.landing-enter-btn:hover .btn-text {
+  color: #ffffff;
+  text-shadow: 0 0 10px rgba(255, 255, 255, 0.5);
+  letter-spacing: 0.38em;
+}
+
+.landing-enter-btn:hover .btn-glow-effect {
+  opacity: 1;
+}
+
+/* Button Active Press State */
+.landing-enter-btn:active {
+  transform: scale(0.98);
+  background: rgba(212, 175, 55, 0.15);
+  transition: all 0.1s ease;
+}
+
+/* Exit transition state triggers when clicking Enter */
+.landing-hero-container.exit-active {
+  animation: exitFadeOut 0.8s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+
+/* --- ANIMATION KEYFRAMES --- */
+
+/* 1. Background softly fades in & scales down from cinematic zoom */
+@keyframes bgFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(1.05);
+    filter: blur(8px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 2. Thin golden frame fades in */
+@keyframes frameFadeIn {
+  from {
+    opacity: 0;
+    inset: 2.2rem;
+  }
+  to {
+    opacity: 1;
+    inset: 1.5rem;
+  }
+}
+
+/* 3. Title cinematic slide up & fade */
+@keyframes titleFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(50px) scale(0.96);
+    filter: blur(5px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+    filter: blur(0);
+  }
+}
+
+/* 4. Ornate divider line expansion */
+@keyframes dividerFade {
+  from {
+    opacity: 0;
+    width: 0;
+  }
+  to {
+    opacity: 1;
+    width: 180px;
+  }
+}
+
+/* 5. Tagline subtle fade in */
+@keyframes taglineFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+    filter: blur(3px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+  }
+}
+
+/* 6. Button fade up */
+@keyframes buttonFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Ornate element subtle pulse */
+@keyframes pulseGlow {
+  from {
+    text-shadow: 0 0 6px rgba(212, 175, 55, 0.4);
+    opacity: 0.7;
+  }
+  to {
+    text-shadow: 0 0 15px rgba(212, 175, 55, 0.9);
+    opacity: 1;
+  }
+}
+
+/* 7. Exit animation (transition to map page) */
+@keyframes exitFadeOut {
+  0% {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  100% {
+    opacity: 0;
+    transform: scale(1.03);
+    filter: blur(12px);
+  }
+}
+
+/* Mobile Responsiveness Improvements */
+@media (max-width: 600px) {
+  .cinematic-frame {
+    inset: 1rem;
+  }
+  .landing-center-content {
+    padding: 1rem;
+  }
+  .landing-title {
+    letter-spacing: 0.16em;
+  }
+  .landing-divider {
+    margin: 1.2rem 0;
+  }
+  .landing-tagline {
+    margin-bottom: 2.8rem;
+  }
+  .landing-enter-btn {
+    padding: 0.8rem 3rem;
+  }
+}

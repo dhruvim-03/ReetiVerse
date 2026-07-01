@@ -1,0 +1,1188 @@
+/* Reetiverse Reference-Matched Map Page Styles */
+
+/* Base containment and reset to prevent any viewport scrollbars */
+.ref-page-wrapper {
+  position: relative;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #080506;
+  
+  /* Varanasi Riverfront Sunset Temple skyline image */
+  background-image: url('https://i.pinimg.com/1200x/a6/6a/6f/a66a6fa77e23ce47cdb7e095dcf22e7a.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  
+  opacity: 0;
+  animation: refFadeIn 1.5s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+/* Translucent dark overlay to blend sunset background */
+.ref-page-overlay {
+  position: absolute;
+  inset: 0;
+  background: rgba(8, 5, 6, 0.58);
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Page Grid System: 50% left, 50% right */
+.ref-page-layout {
+  position: relative;
+  z-index: 3;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  width: 100%;
+  height: 100vh;
+  overflow: hidden;
+}
+
+/* LEFT COLUMN: Map, Compass, Logo Card */
+.ref-left-column {
+  position: relative;
+  height: calc(100vh - 4.4rem);
+  margin: 2.2rem 1rem 2.2rem 3rem;
+  background: rgba(20, 10, 5, 0.76); /* Dark wood glassmorphism card matching explore states */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(214, 168, 95, 0.28);
+  border-radius: 30px;
+  box-shadow: 
+    inset 0 0 15px rgba(214, 168, 95, 0.16),
+    0 15px 35px rgba(0, 0, 0, 0.7);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow: hidden;
+}
+
+/* Logo brand block (Top-Left) */
+.ref-brand-block {
+  position: absolute;
+  top: 2.2rem;
+  left: 3.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  z-index: 5;
+  cursor: pointer;
+}
+
+.brand-logo-star {
+  width: 32px;
+  height: 32px;
+  filter: drop-shadow(0 0 8px rgba(214, 168, 95, 0.6));
+  animation: logoPulse 3s ease-in-out infinite alternate;
+}
+
+.ref-brand-name {
+  font-family: 'Cinzel', serif;
+  font-size: 1.5rem;
+  font-weight: 700;
+  letter-spacing: 4px;
+  color: #D6A85F; /* Reference Gold */
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9);
+}
+
+/* Antique Map Container: Enlarged to fill almost all height/width proportionally */
+.ref-map-container {
+  width: 100%;
+  height: 100%;
+  z-index: 3;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 2.2rem 0.2rem 1.2rem 0.2rem; /* Consistently padded leaving room for top-left title and bottom-left compass */
+  opacity: 0;
+  animation: mapScaleIn 1.4s cubic-bezier(0.16, 1, 0.3, 1) 0.3s forwards;
+}
+
+/* Vintage compass windrose (Bottom-Left) */
+.ref-vintage-compass {
+  position: absolute;
+  bottom: 2.2rem;
+  left: 3.5rem;
+  width: 90px;
+  height: 90px;
+  z-index: 5;
+  opacity: 0.8;
+  filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.7));
+  animation: compassFloat 5s ease-in-out infinite alternate;
+}
+
+.compass-svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* RIGHT COLUMN: Stacked Panels Grid */
+.ref-right-column {
+  position: relative;
+  z-index: 3;
+  height: 100vh;
+  display: grid;
+  grid-template-rows: 1.25fr 1fr; /* Top row holds Explore States & UT cards, Bottom row holds Reeti AI */
+  gap: 1.4rem;
+  padding: 2.2rem 3rem 2.2rem 1rem;
+}
+
+.right-column-top-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Side-by-side adjacent cards */
+  gap: 1.4rem;
+  min-height: 0; /* Prevents overflow content */
+}
+
+/* Card Container bases */
+.ref-card {
+  display: flex;
+  border-radius: 30px; /* 28-32px rounded corners */
+  overflow: hidden;
+  position: relative;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Left Half of Cards (Text descriptions) */
+.card-left-part {
+  flex: 1.1;
+  padding: 2rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.heritage-icon-circle {
+  width: 48px;
+  height: 48px;
+  border-radius: 50%;
+  background: rgba(214, 168, 95, 0.08);
+  border: 1px solid rgba(214, 168, 95, 0.35);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1.2rem;
+  box-shadow: 0 0 10px rgba(214, 168, 95, 0.1);
+}
+
+.heritage-icon {
+  width: 22px;
+  height: 22px;
+}
+
+.card-heading {
+  font-family: 'Cinzel', serif;
+  font-size: 1.35rem;
+  font-weight: 700;
+  letter-spacing: 2px;
+  color: #D6A85F; /* reference gold */
+  margin: 0;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+}
+
+.card-divider {
+  width: 60px;
+  height: 1.5px;
+  margin: 0.8rem 0 1rem 0;
+}
+
+.gold-divider {
+  background: linear-gradient(90deg, #D6A85F, transparent);
+}
+
+.card-description {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.82rem;
+  font-weight: 400;
+  color: rgba(252, 249, 245, 0.72);
+  line-height: 1.55;
+  margin: 0 0 1.5rem 0;
+  letter-spacing: 0.3px;
+}
+
+/* Pill CTA Buttons */
+.pill-button {
+  align-self: flex-start;
+  font-family: 'Cinzel', serif;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0.75rem 2.2rem;
+  border-radius: 50px;
+  cursor: pointer;
+  background: transparent;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.gold-pill {
+  border: 1px solid rgba(214, 168, 95, 0.55);
+  color: #D6A85F;
+}
+
+.gold-pill:hover {
+  background: rgba(214, 168, 95, 0.08);
+  border-color: #D6A85F;
+  box-shadow: 0 0 22px rgba(214, 168, 95, 0.45);
+  transform: scale(1.04);
+}
+
+.gold-pill:hover .arrow {
+  transform: translateX(4px);
+}
+
+.arrow {
+  transition: transform 0.3s ease;
+}
+
+/* Right Half of Cards (Media/Robotics Grid) */
+.card-right-part {
+  flex: 1.1;
+  position: relative;
+  overflow: hidden;
+}
+
+
+/* CARD 1: EXPLORE STATES (Top Card) */
+.explore-states-card {
+  flex: 1;
+  background: rgba(20, 10, 5, 0.76); /* Dark wood glassmorphism */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1px solid rgba(214, 168, 95, 0.28);
+  box-shadow: 
+    inset 0 0 15px rgba(214, 168, 95, 0.16),
+    0 15px 35px rgba(0, 0, 0, 0.7);
+  
+  opacity: 0;
+  transform: translateY(-40px);
+  animation: cardSlideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+/* 4x3 Image Grid Styling */
+.grid-part {
+  padding: 1rem 1rem 1rem 0;
+  display: flex;
+  align-items: center;
+}
+
+.images-4x3-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-rows: repeat(4, 1fr);
+  gap: 0.45rem;
+  width: 100%;
+  height: 98%;
+}
+
+.grid-image-wrapper {
+  position: relative;
+  border-radius: 12px; /* Rounded corners */
+  overflow: hidden;
+  cursor: pointer;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.4);
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.grid-thumbnail-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  filter: saturate(0.85) contrast(1.05);
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+.thumbnail-title-overlay {
+  position: absolute;
+  bottom: 0;
+  inset-inline: 0;
+  padding: 0.3rem;
+  background: linear-gradient(to top, rgba(11, 6, 4, 0.9) 0%, transparent 100%);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.62rem;
+  color: #fff;
+  text-align: center;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+/* Thumbnail Hover States */
+.grid-image-wrapper:hover {
+  transform: scale(1.06);
+  z-index: 10;
+  box-shadow: 
+    0 8px 20px rgba(0, 0, 0, 0.6),
+    0 0 12px rgba(214, 168, 95, 0.35);
+}
+
+.grid-image-wrapper:hover .grid-thumbnail-img {
+  filter: saturate(1.1) contrast(1.1) brightness(1.15);
+}
+
+.grid-image-wrapper:hover .thumbnail-title-overlay {
+  opacity: 1;
+}
+
+
+/* CARD 2: REETI AI (Bottom Card) */
+.reeti-ai-card {
+  flex: 1;
+  background: linear-gradient(
+    135deg,
+    #0b0415,
+    #18051f,
+    #22052d
+  );
+  border: 1.2px solid rgba(155, 92, 255, 0.28);
+  box-shadow: 
+    0 0 25px rgba(155, 92, 255, 0.12),
+    0 15px 35px rgba(0, 0, 0, 0.7);
+  
+  opacity: 0;
+  transform: translateY(40px);
+  animation: cardSlideUp 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+/* Purple Left Portion Accents */
+.purple-circle {
+  background: rgba(155, 92, 255, 0.08);
+  border-color: rgba(155, 92, 255, 0.35);
+  box-shadow: 0 0 10px rgba(155, 92, 255, 0.1);
+}
+
+.purple-heading {
+  color: #ffffff;
+  letter-spacing: 3px;
+  text-shadow: 0 0 12px rgba(155, 92, 255, 0.4);
+}
+
+.purple-divider {
+  background: linear-gradient(90deg, #9B5CFF, transparent);
+}
+
+.purple-pill {
+  border: 1px solid rgba(155, 92, 255, 0.55);
+  color: #c084fc;
+}
+
+.purple-pill:hover {
+  background: rgba(155, 92, 255, 0.1);
+  border-color: #9B5CFF;
+  box-shadow: 0 0 22px rgba(155, 92, 255, 0.5);
+  transform: scale(1.04);
+  color: #fff;
+}
+
+.purple-pill:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ROBOT PORTION: Animated Robot & Orbitals */
+.robot-part {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.robot-orbitals-container {
+  position: absolute;
+  inset: 0;
+  z-index: 1;
+  pointer-events: none;
+}
+
+/* Orbit paths */
+.orbit-line {
+  position: absolute;
+  border-radius: 50%;
+  border: 1px solid rgba(155, 92, 255, 0.1);
+  top: 50%;
+  left: 48%;
+  transform: translate(-50%, -50%);
+  pointer-events: none;
+}
+
+.inner-orbit {
+  width: 140px;
+  height: 140px;
+  border-style: dashed;
+  animation: spinOrbit 40s linear infinite;
+}
+
+.outer-orbit {
+  width: 200px;
+  height: 200px;
+  animation: spinOrbitRev 60s linear infinite;
+}
+
+.connecting-lines-svg {
+  position: absolute;
+  inset: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+}
+
+/* Floating UI Nodes */
+.floating-ui-node {
+  position: absolute;
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  background: rgba(15, 6, 25, 0.85);
+  border: 1.2px solid rgba(155, 92, 255, 0.55);
+  box-shadow: 
+    0 0 10px rgba(155, 92, 255, 0.3),
+    inset 0 0 5px rgba(155, 92, 255, 0.2);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  pointer-events: all;
+  z-index: 5;
+  transition: all 0.3s ease;
+}
+
+.floating-ui-node:hover {
+  background: rgba(155, 92, 255, 0.25);
+  border-color: #9B5CFF;
+  box-shadow: 0 0 18px rgba(155, 92, 255, 0.7);
+  transform: scale(1.15);
+}
+
+.node-icon {
+  font-size: 0.85rem;
+}
+
+/* Positioning matching reference image nodes layout circular */
+.node-monument {
+  top: 15%;
+  left: 60%;
+  animation: driftNode1 4s ease-in-out infinite alternate;
+}
+
+.node-book {
+  top: 45%;
+  left: 51%;
+  animation: driftNode2 4.5s ease-in-out infinite alternate;
+}
+
+.node-chat {
+  top: 30%;
+  right: 6%;
+  animation: driftNode3 5s ease-in-out infinite alternate;
+}
+
+.node-pin {
+  bottom: 15%;
+  right: 5%;
+  animation: driftNode4 4.8s ease-in-out infinite alternate;
+}
+
+/* Particle sparkles */
+.particle {
+  position: absolute;
+  width: 3px;
+  height: 3px;
+  border-radius: 50%;
+  background: #c084fc;
+  box-shadow: 0 0 6px #c084fc;
+}
+
+.particle-1 { top: 20%; right: 20%; animation: particleFloat 4s infinite linear; }
+.particle-2 { bottom: 25%; left: 55%; animation: particleFloat 5s infinite linear; }
+.particle-3 { top: 60%; right: 10%; animation: particleFloat 3s infinite linear; }
+.particle-4 { bottom: 10%; left: 75%; animation: particleFloat 6s infinite linear; }
+
+/* Robot SVG placement */
+.robot-svg-wrapper {
+  position: relative;
+  z-index: 2;
+  width: 175px;
+  height: 205px;
+  margin-left: 2.2rem;
+}
+
+.robot-svg {
+  width: 100%;
+  height: 100%;
+}
+
+
+/* --- MODAL OVERLAYS (Functional layers) --- */
+
+.ref-modal-overlay {
+  position: fixed;
+  inset: 0;
+  z-index: 100;
+  background: rgba(8, 5, 6, 0.82);
+  backdrop-filter: blur(14px);
+  -webkit-backdrop-filter: blur(14px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+}
+
+.ref-modal-card {
+  width: 100%;
+  max-width: 480px;
+  max-height: 80vh;
+  border-radius: 24px;
+  padding: 1.8rem;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+  color: #fff;
+  border: 1.5px solid rgba(214, 168, 95, 0.35);
+  background: rgba(20, 11, 7, 0.85) !important;
+}
+
+.ai-chat-card {
+  max-width: 580px;
+  max-height: 85vh;
+  border-color: rgba(155, 92, 255, 0.35);
+  background: rgba(15, 6, 25, 0.85) !important;
+}
+
+.close-modal-btn {
+  position: absolute;
+  top: 1.1rem;
+  right: 1.2rem;
+  background: transparent;
+  border: none;
+  color: rgba(252, 249, 245, 0.5);
+  font-size: 1.1rem;
+  cursor: pointer;
+  transition: color 0.3s ease;
+}
+
+.close-modal-btn:hover {
+  color: #fff;
+}
+
+.modal-title {
+  font-family: 'Cinzel', serif;
+  font-size: 1.4rem;
+  color: #D6A85F;
+  letter-spacing: 1.5px;
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+/* Modal search bar */
+.modal-search-wrapper {
+  position: relative;
+  margin-bottom: 1.2rem;
+}
+
+.modal-search-input {
+  width: 100%;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(214, 168, 95, 0.3);
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.65rem 1rem 0.65rem 2.2rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.modal-search-input:focus {
+  border-color: #D6A85F;
+}
+
+.modal-search-wrapper .search-icon {
+  position: absolute;
+  left: 0.8rem;
+  top: 50%;
+  transform: translateY(-50%);
+  opacity: 0.6;
+  font-size: 0.8rem;
+}
+
+/* Scroll list states inside modal */
+.modal-scroll-list {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.45rem;
+  padding-right: 0.3rem;
+}
+
+.modal-state-item {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  padding: 0.7rem 0.9rem;
+  background: rgba(255,255,255,0.02);
+  border: 1px solid rgba(255,255,255,0.04);
+  border-radius: 10px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-state-item:hover {
+  background: rgba(214, 168, 95, 0.1);
+  border-color: rgba(214, 168, 95, 0.5);
+  transform: translateX(4px);
+}
+
+.modal-state-item .bullet {
+  color: rgba(214, 168, 95, 0.5);
+  font-size: 0.6rem;
+}
+
+.modal-state-item:hover .bullet {
+  color: #D6A85F;
+}
+
+.state-details {
+  display: flex;
+  justify-content: space-between;
+  width: 100%;
+}
+
+.state-details .name {
+  font-family: 'Cinzel', serif;
+  font-size: 0.88rem;
+  font-weight: 700;
+  color: rgba(252, 249, 245, 0.9);
+}
+
+.state-details .capital {
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.72rem;
+  color: rgba(252, 249, 245, 0.4);
+}
+
+.no-states {
+  text-align: center;
+  font-family: 'Cormorant Garamond', serif;
+  font-style: italic;
+  color: rgba(252,249,245,0.4);
+  margin-top: 1.5rem;
+}
+
+/* AI Chat Modal specific layout */
+.ai-modal-header {
+  display: flex;
+  align-items: center;
+  gap: 0.8rem;
+  border-bottom: 1px solid rgba(155, 92, 255, 0.15);
+  padding-bottom: 0.8rem;
+  margin-bottom: 1rem;
+}
+
+.ai-modal-header h3 {
+  font-family: 'Cinzel', serif;
+  font-size: 1.25rem;
+  color: #fff;
+  letter-spacing: 1px;
+  margin: 0;
+  text-shadow: 0 0 10px rgba(155, 92, 255, 0.3);
+}
+
+.ai-modal-header p {
+  font-family: 'Cormorant Garamond', serif;
+  font-size: 0.88rem;
+  font-style: italic;
+  color: rgba(252, 249, 245, 0.5);
+  margin: 0.1rem 0 0 0;
+}
+
+.mini-orb {
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #c084fc;
+  box-shadow: 0 0 10px #9b5cff;
+  animation: miniOrbGlow 1.5s infinite alternate;
+}
+
+.ai-modal-messages {
+  flex: 1;
+  overflow-y: auto;
+  display: flex;
+  flex-direction: column;
+  gap: 0.8rem;
+  padding-right: 0.4rem;
+  margin-bottom: 1rem;
+  min-height: 250px;
+}
+
+.modal-chat-bubble-row {
+  display: flex;
+  width: 100%;
+}
+
+.modal-chat-bubble-row.user { justify-content: flex-end; }
+.modal-chat-bubble-row.assistant { justify-content: flex-start; }
+
+.modal-chat-bubble {
+  max-width: 85%;
+  padding: 0.65rem 0.95rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  line-height: 1.45;
+  border-radius: 14px;
+}
+
+.modal-chat-bubble-row.user .modal-chat-bubble {
+  background: rgba(155, 92, 255, 0.15);
+  border: 1px solid rgba(155, 92, 255, 0.4);
+  color: #e9d5ff;
+  border-bottom-right-radius: 2px;
+}
+
+.modal-chat-bubble-row.assistant .modal-chat-bubble {
+  background: rgba(255, 255, 255, 0.03);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(252, 249, 245, 0.88);
+  border-bottom-left-radius: 2px;
+}
+
+.modal-chat-bubble strong {
+  color: #f3e8ff;
+  font-weight: 600;
+}
+
+.modal-chat-bubble.typing {
+  display: flex;
+  align-items: center;
+  gap: 3px;
+}
+
+.modal-chat-bubble.typing .dot {
+  width: 5px;
+  height: 5px;
+  background: rgba(155, 92, 255, 0.6);
+  border-radius: 50%;
+  animation: modalTypingDot 1.4s infinite ease-in-out;
+}
+
+.modal-chat-bubble.typing .dot:nth-child(1) { animation-delay: 0s; }
+.modal-chat-bubble.typing .dot:nth-child(2) { animation-delay: 0.2s; }
+.modal-chat-bubble.typing .dot:nth-child(3) { animation-delay: 0.4s; }
+
+/* Suggestions chips row */
+.modal-suggestions-row {
+  display: flex;
+  gap: 0.45rem;
+  overflow-x: auto;
+  padding-bottom: 0.6rem;
+  margin-bottom: 0.6rem;
+}
+
+.modal-suggestion-btn {
+  background: rgba(155, 92, 255, 0.05);
+  border: 1px solid rgba(155, 92, 255, 0.3);
+  color: rgba(252, 249, 245, 0.7);
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.7rem;
+  padding: 0.32rem 0.8rem;
+  border-radius: 20px;
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: all 0.3s ease;
+}
+
+.modal-suggestion-btn:hover {
+  background: rgba(155, 92, 255, 0.18);
+  border-color: #9B5CFF;
+  color: #fff;
+  transform: translateY(-1px);
+}
+
+/* Chat input bar */
+.modal-chat-input-row {
+  display: flex;
+  gap: 0.6rem;
+}
+
+.modal-chat-input {
+  flex: 1;
+  background: rgba(0,0,0,0.4);
+  border: 1px solid rgba(155, 92, 255, 0.3);
+  color: #fff;
+  border-radius: 12px;
+  padding: 0.65rem 1rem;
+  font-family: 'Poppins', sans-serif;
+  font-size: 0.85rem;
+  outline: none;
+}
+
+.modal-chat-input:focus {
+  border-color: #9B5CFF;
+}
+
+.modal-chat-send-btn {
+  background: #9B5CFF;
+  color: #fff;
+  font-family: 'Cinzel', serif;
+  font-size: 0.75rem;
+  font-weight: 700;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  padding: 0 1.5rem;
+  border-radius: 12px;
+  border: none;
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+
+.modal-chat-send-btn:hover {
+  background: #a855f7;
+  box-shadow: 0 0 12px rgba(155, 92, 255, 0.5);
+}
+
+
+/* --- ANIMATION KEYFRAMES --- */
+
+@keyframes refFadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes mapScaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.9);
+  }
+  to {
+    opacity: 1;
+    transform: scale(0.95);
+  }
+}
+
+@keyframes logoPulse {
+  from {
+    filter: drop-shadow(0 0 4px rgba(214, 168, 95, 0.4));
+  }
+  to {
+    filter: drop-shadow(0 0 12px rgba(214, 168, 95, 0.8));
+  }
+}
+
+@keyframes compassFloat {
+  0% { transform: translateY(0px) rotate(0deg); }
+  100% { transform: translateY(-4px) rotate(2deg); }
+}
+
+@keyframes cardSlideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes cardSlideUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Robot Breathing animation */
+.robot-breathing-group {
+  animation: breatheMotion 4.2s ease-in-out infinite alternate;
+}
+
+@keyframes breatheMotion {
+  0% {
+    transform: translateY(0px);
+  }
+  100% {
+    transform: translateY(-5px);
+  }
+}
+
+/* Head Tilt animation */
+.robot-head-group {
+  transform-origin: 100px 130px;
+  animation: headTiltMotion 6s ease-in-out infinite alternate;
+}
+
+@keyframes headTiltMotion {
+  0% {
+    transform: rotate(-1.5deg);
+  }
+  100% {
+    transform: rotate(1.5deg) translateY(-1px);
+  }
+}
+
+.robot-eye {
+  animation: eyePulse 3s infinite alternate ease-in-out;
+}
+
+@keyframes eyePulse {
+  0% {
+    fill: #a855f7;
+    filter: drop-shadow(0 0 1px rgba(168, 85, 247, 0.4));
+  }
+  100% {
+    fill: #d8b4fe;
+    filter: drop-shadow(0 0 6px rgba(168, 85, 247, 0.95));
+  }
+}
+
+/* Orbits spinning */
+@keyframes spinOrbit {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(360deg); }
+}
+
+@keyframes spinOrbitRev {
+  0% { transform: translate(-50%, -50%) rotate(0deg); }
+  100% { transform: translate(-50%, -50%) rotate(-360deg); }
+}
+
+/* Floating nodes animations */
+@keyframes driftNode1 {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-5px) scale(1.02); }
+}
+@keyframes driftNode2 {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(6px) scale(0.98); }
+}
+@keyframes driftNode3 {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(-4px) scale(1.03); }
+}
+@keyframes driftNode4 {
+  0% { transform: translateY(0px) scale(1); }
+  100% { transform: translateY(5px) scale(0.98); }
+}
+
+/* Sparkle particles float */
+@keyframes particleFloat {
+  0% { transform: translateY(0px) translateX(0px) scale(0.8); opacity: 0.3; }
+  50% { transform: translateY(-8px) translateX(4px) scale(1.2); opacity: 0.9; }
+  100% { transform: translateY(-15px) translateX(-2px) scale(0.8); opacity: 0; }
+}
+
+@keyframes miniOrbGlow {
+  from { box-shadow: 0 0 5px #9b5cff; }
+  to { box-shadow: 0 0 15px #9b5cff, 0 0 25px #c084fc; }
+}
+
+@keyframes modalTypingDot {
+  0%, 100% { transform: translateY(0); opacity: 0.4; }
+  50% { transform: translateY(-3px); opacity: 1; }
+}
+
+/* Page exit fade */
+.ref-page-wrapper.ref-exit-active {
+  animation: refExit 0.85s cubic-bezier(0.16, 1, 0.3, 1) forwards !important;
+}
+
+@keyframes refExit {
+  from {
+    opacity: 1;
+    transform: scale(1);
+    filter: blur(0);
+  }
+  to {
+    opacity: 0;
+    transform: scale(0.97);
+    filter: blur(10px);
+  }
+}
+
+/* Scrollbars */
+.modal-scroll-list::-webkit-scrollbar,
+.ai-modal-messages::-webkit-scrollbar,
+.modal-suggestions-row::-webkit-scrollbar {
+  width: 4px;
+  height: 4px;
+}
+
+.modal-scroll-list::-webkit-scrollbar-track,
+.ai-modal-messages::-webkit-scrollbar-track,
+.modal-suggestions-row::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.modal-scroll-list::-webkit-scrollbar-thumb,
+.ai-modal-messages::-webkit-scrollbar-thumb,
+.modal-suggestions-row::-webkit-scrollbar-thumb {
+  background: rgba(214, 168, 95, 0.25);
+  border-radius: 4px;
+}
+
+.ai-modal-messages::-webkit-scrollbar-thumb {
+  background: rgba(155, 92, 255, 0.25);
+}
+
+/* --- SIDE-BY-SIDE TOP ROW CARDS & UNION TERRITORIES STYLING --- */
+
+.ref-card--simplified {
+  background: rgba(20, 10, 5, 0.76); /* Match Explore States glassmorphism */
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+  border: 1.5px solid rgba(214, 168, 95, 0.28);
+  box-shadow: 
+    inset 0 0 15px rgba(214, 168, 95, 0.16),
+    0 15px 35px rgba(0, 0, 0, 0.7);
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  box-sizing: border-box;
+  opacity: 0;
+  transform: translateY(-40px);
+  animation: cardSlideDown 1.2s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.ref-card--simplified .card-left-part {
+  padding: 1.8rem 2.2rem;
+  flex: 1;
+  width: 100%;
+  box-sizing: border-box;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* Keep top text and bottom CTA button separated */
+  align-items: flex-start;
+}
+
+.ref-card--simplified .card-top-content {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.ref-card--simplified .card-description {
+  margin-bottom: 1.8rem;
+}
+
+
+/* --- RESPONSIVENESS MEDIA QUERIES --- */
+
+/* Tablets and medium screens */
+@media (max-width: 1024px) {
+  .ref-page-layout {
+    grid-template-columns: 1fr;
+    height: auto;
+    overflow-y: auto;
+  }
+
+  .ref-left-column {
+    height: 600px;
+    padding-top: 60px;
+  }
+  
+  .archway-top-decor {
+    height: 100px;
+    clip-path: none;
+    background: linear-gradient(to bottom, #080506 60%, transparent 100%);
+  }
+
+  .ref-right-column {
+    height: auto;
+    padding: 1rem 1.5rem 3rem 1.5rem;
+    gap: 1.5rem;
+  }
+
+  .ref-card {
+    height: 380px;
+  }
+  
+  .robot-svg-wrapper {
+    width: 155px;
+    height: 180px;
+  }
+}
+
+/* Mobile Screen Sizes */
+@media (max-width: 600px) {
+  .right-column-top-row {
+    grid-template-columns: 1fr; /* Stack Explore States and UT cards vertically */
+    height: auto;
+  }
+
+  .ref-brand-block {
+    top: 1.5rem;
+    left: 2rem;
+  }
+  
+  .ref-brand-name {
+    font-size: 1.25rem;
+    letter-spacing: 2px;
+  }
+
+  .ref-left-column {
+    height: 480px;
+  }
+
+  .ref-map-container {
+    width: 95%;
+    transform: scale(0.85);
+  }
+
+  .ref-vintage-compass {
+    display: none; /* Hide compass on small mobile viewport */
+  }
+
+  .ref-card {
+    flex-direction: column;
+    height: auto;
+    border-radius: 24px;
+  }
+
+  .card-left-part {
+    padding: 1.5rem;
+    align-items: center;
+    text-align: center;
+  }
+  
+  .card-description {
+    margin-bottom: 1.2rem;
+  }
+
+  .card-right-part {
+    padding: 0 1.5rem 1.5rem 1.5rem;
+    height: 250px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  .images-4x3-grid {
+    height: 100%;
+  }
+
+  .robot-svg-wrapper {
+    margin-left: 0;
+    width: 140px;
+    height: 160px;
+  }
+
+  .floating-ui-node {
+    width: 28px;
+    height: 28px;
+  }
+  
+  .node-monument { top: 10%; left: 40%; }
+  .node-book { top: 40%; left: 25%; }
+  .node-chat { top: 25%; right: 25%; }
+  .node-pin { bottom: 15%; right: 35%; }
+
+  .ref-modal-card {
+    padding: 1.2rem;
+    border-radius: 20px;
+  }
+}
