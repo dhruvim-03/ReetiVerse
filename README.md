@@ -39,13 +39,13 @@
 # 📸 Screenshots
 
 ### 🏠 Landing Page
-![Landing Page](<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/ca3d9a17-bfa2-45ff-8ee7-306e9c8eb7f4" />)
+![Landing Page](https://github.com/user-attachments/assets/ca3d9a17-bfa2-45ff-8ee7-306e9c8eb7f4)
 
 ### 🗺️ Interactive India Map and AI Assistant
-![Map](<img width="1526" height="856" alt="Image" src="https://github.com/user-attachments/assets/21b80d1e-f692-42fc-8613-b0d3a54410ab" />)
+![Map](https://github.com/user-attachments/assets/21b80d1e-f692-42fc-8613-b0d3a54410ab)
 
 ### 📚 State Information Page
-![State Details](<img width="1920" height="1080" alt="Image" src="https://github.com/user-attachments/assets/708f8c07-9eef-49d1-bf87-5c2fbad230e1" />)
+![State Details](https://github.com/user-attachments/assets/708f8c07-9eef-49d1-bf87-5c2fbad230e1)
 
 
 ---
